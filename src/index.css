@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+input {
+    background-color: white; /* ou qualquer cor de contraste */
+    border: 1px solid #ccc;
+}
+
+button {
+    border-radius: 5px;
+}
