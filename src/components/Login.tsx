@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ErrorLogged from "./ErrorLogged";
 
 export default function Login({ logar, usuario }: any) {
     const [user, setUser] = useState("");
+    const [data, setData] = useState("");
     const handleClick = (e: any) => {
         e.preventDefault();
 
@@ -10,6 +11,12 @@ export default function Login({ logar, usuario }: any) {
         user && logar();
         console.log("Você está logado !");
     };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setData("Data adicionado após 3s");
+        }, 3000);
+    });
     return (
         <div className="border-2 rounded-md h-[100] w-[100] m-auto p-4 bg-cyan-700">
             <h2>Login</h2>
@@ -33,7 +40,7 @@ export default function Login({ logar, usuario }: any) {
                     Logar
                 </button>
             </form>
-            {!user && <ErrorLogged />}
+            {<p>Dado adicionado: {data ? data : "Carregando..."}</p>}
         </div>
     );
 }

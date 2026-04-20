@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 export default function Content({ deslogar, usuario }: any) {
     const [contador, setContador] = useState(0);
     const handleExit = () => {
@@ -9,11 +9,22 @@ export default function Content({ deslogar, usuario }: any) {
     //     setContador(contador + 1);
     // };
 
-    const handlePerSecond = () => {
-        setInterval(() => {
-            setContador(contador + 3);
+    // const handlePerSecond = () => {
+    //     setInterval(() => {
+    //         setContador(contador + 3);
+    //     }, 1000);
+    // };
+    useEffect(() => {
+        // 1. Cria o intervalo e guarda a referência
+        const intervalId = setInterval(() => {
+            // 2. Usa a forma funcional para pegar o valor mais recente
+            setContador((c) => c + 1);
         }, 1000);
-    };
+
+        // 3. A FUNÇÃO DE LIMPEZA (Cleanup Function)
+        // Isso roda antes do efeito executar novamente, limpando o anterior
+        return () => clearInterval(intervalId);
+    }, []); // Deixe o array vazio se o setInterval não depender de props/state
 
     return (
         <>
@@ -27,7 +38,7 @@ export default function Content({ deslogar, usuario }: any) {
             </button>
             <p>Contador: {contador}</p>
             <button
-                onClick={handlePerSecond}
+                // onClick={console.log("clicou")}
                 className="text-blue-500 p-2.5 w-1/3 bg-red-200 cursor-pointer"
             >
                 Add contador

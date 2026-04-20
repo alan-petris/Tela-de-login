@@ -1,7 +1,7 @@
 import "./App.css";
-import Login from "./components/login";
 import Content from "./components/Content";
 import { useState } from "react";
+import Login from "./components/Login";
 
 function App() {
     const [logged, setLogged] = useState(true);
