@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ErrorLogged from "./ErrorLogged";
 
 export default function Login({ logar, usuario }: any) {
     const [user, setUser] = useState("");
@@ -41,6 +40,9 @@ export default function Login({ logar, usuario }: any) {
                 </button>
             </form>
             {<p>Dado adicionado: {data ? data : "Carregando..."}</p>}
+            <button className="cursor-pointer hover:text-amber-400">
+                Página Energia
+            </button>
         </div>
     );
 }

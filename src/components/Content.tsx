@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { FaBoltLightning } from "react-icons/fa6";
 export default function Content({ deslogar, usuario }: any) {
     const [contador, setContador] = useState(0);
+    const [ativarContador, setAtivarContador] = useState(false);
     const handleExit = () => {
         console.log("Você saiu da aplicação");
         deslogar();
@@ -16,15 +18,17 @@ export default function Content({ deslogar, usuario }: any) {
     // };
     useEffect(() => {
         // 1. Cria o intervalo e guarda a referência
-        const intervalId = setInterval(() => {
-            // 2. Usa a forma funcional para pegar o valor mais recente
-            setContador((c) => c + 1);
-        }, 1000);
+        if (ativarContador) {
+            const intervalId = setInterval(() => {
+                // 2. Usa a forma funcional para pegar o valor mais recente
+                setContador((c) => c + 1);
+            }, 1000);
 
-        // 3. A FUNÇÃO DE LIMPEZA (Cleanup Function)
-        // Isso roda antes do efeito executar novamente, limpando o anterior
-        return () => clearInterval(intervalId);
-    }, []); // Deixe o array vazio se o setInterval não depender de props/state
+            // 3. A FUNÇÃO DE LIMPEZA (Cleanup Function)
+            // Isso roda antes do efeito executar novamente, limpando o anterior
+            return () => clearInterval(intervalId);
+        }
+    }, [ativarContador]); // Deixe o array vazio se o setInterval não depender de props/state
 
     return (
         <>
@@ -38,10 +42,12 @@ export default function Content({ deslogar, usuario }: any) {
             </button>
             <p>Contador: {contador}</p>
             <button
-                // onClick={console.log("clicou")}
-                className="text-blue-500 p-2.5 w-1/3 bg-red-200 cursor-pointer"
+                onClick={() => {
+                    setAtivarContador(!ativarContador);
+                }}
+                className="flex justify-between text-blue-700 p-2 w-40 bg-red-400 cursor-pointer"
             >
-                Add contador
+                Add contador <FaBoltLightning />
             </button>
         </>
     );

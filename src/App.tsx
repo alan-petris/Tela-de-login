@@ -2,6 +2,7 @@ import "./App.css";
 import Content from "./components/Content";
 import { useState } from "react";
 import Login from "./components/Login";
+import Energia from "./components/Energia";
 
 function App() {
     const [logged, setLogged] = useState(true);
@@ -14,6 +15,7 @@ function App() {
     };
     return (
         <>
+            <Energia />
             {logged ? (
                 <Login logar={handleLogger} usuario={handleUser} />
             ) : (
